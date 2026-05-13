@@ -19,15 +19,20 @@ const protect = async (req, res, next) => {
       );
 
       // find user
-      req.user = await User.findById(decoded.id).select(
+      const user = await User.findById(decoded.id).select(
         "-password"
       );
 
-      if (!req.user) {
+      if (!user) {
         return res.status(401).json({
           message: "Not authorized, user not found",
         });
       }
+
+      req.user = {
+        id: user._id,
+        role: user.role,
+      };
 
       next();
     } else {
@@ -41,17 +46,6 @@ const protect = async (req, res, next) => {
     });
   }
 };
-const admin = (req, res, next) => {
-  if (req.user && req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(403).json({
-      message: "Admin access only",
-    });
-  }
-};
-
 module.exports = {
   protect,
-  admin,
 };

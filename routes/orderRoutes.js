@@ -3,23 +3,24 @@ const express = require("express");
 const {
   createOrder,
   getMyOrders,
-    getAllOrders,
+  getAllOrders,
   updateOrderStatus,
 } = require("../controllers/orderController");
 
-const { protect,  admin, } = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
+const adminMiddleware = require("../middleware/adminMiddleware");
 
 const router = express.Router();
 
 router.post("/", protect, createOrder);
 
 router.get("/my-orders", protect, getMyOrders);
-router.get("/", protect, admin, getAllOrders);
+router.get("/", protect, adminMiddleware, getAllOrders);
 
 router.patch(
   "/:id/status",
   protect,
-  admin,
+  adminMiddleware,
   updateOrderStatus
 );
 

@@ -12,7 +12,7 @@ const createOrder = async (req, res) => {
     } = req.body;
 
     const order = await Order.create({
-      user: req.user._id,
+      user: req.user.id,
       items,
       pickupDate,
       phone,
@@ -32,7 +32,7 @@ const createOrder = async (req, res) => {
 const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({
-      user: req.user._id,
+      user: req.user.id,
     }).populate("items.product");
 
     res.json(orders);
