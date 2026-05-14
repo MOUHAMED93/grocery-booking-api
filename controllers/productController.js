@@ -92,7 +92,10 @@ const updateProduct = async (req, res) => {
       name,
       category,
       price,
+      image,
       description,
+      stock,
+      available,
       isAvailable,
     } = req.body;
 
@@ -106,12 +109,33 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    product.name = name || product.name;
-    product.category =
-      category || product.category;
-    product.price = price || product.price;
-    product.description =
-      description || product.description;
+    if (name !== undefined) {
+      product.name = name;
+    }
+
+    if (category !== undefined) {
+      product.category = category;
+    }
+
+    if (price !== undefined) {
+      product.price = price;
+    }
+
+    if (image !== undefined) {
+      product.image = image;
+    }
+
+    if (description !== undefined) {
+      product.description = description;
+    }
+
+    if (stock !== undefined) {
+      product.stock = stock;
+    }
+
+    if (available !== undefined) {
+      product.isAvailable = available;
+    }
 
     if (isAvailable !== undefined) {
       product.isAvailable = isAvailable;

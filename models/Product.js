@@ -17,8 +17,17 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
+    image: {
+      type: String,
+    },
+
     description: {
       type: String,
+    },
+
+    stock: {
+      type: Number,
+      default: 0,
     },
 
     isAvailable: {
