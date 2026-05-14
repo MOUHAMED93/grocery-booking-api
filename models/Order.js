@@ -29,13 +29,27 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
 
+    customerName: {
+      type: String,
+    },
+
     phone: {
       type: String,
       required: true,
     },
 
+    address: {
+      type: String,
+    },
+
     notes: {
       type: String,
+    },
+
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0,
     },
 
     status: {
