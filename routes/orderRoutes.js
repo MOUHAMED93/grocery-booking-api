@@ -24,4 +24,18 @@ router.patch(
   updateOrderStatus
 );
 
+router.patch(
+  "/:id",
+  protect,
+  adminMiddleware,
+  updateOrderStatus
+);
+
+router.put(
+  "/:id",
+  protect,
+  adminMiddleware,
+  updateOrderStatus
+);
+
 module.exports = router;
